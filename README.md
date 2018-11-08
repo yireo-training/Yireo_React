@@ -5,7 +5,7 @@ The current Magento 2 frontend is based on Knockout, RequireJS and ES5 modules. 
 Use the following commands to install this module into Magento 2:
 
     composer config repositories.yireo-react vcs git@github.com:yireo-training/Yireo_React.git
-    composer require yireo/magento2-react
+    composer require yireo/magento2-react:dev-master
     
     ./bin/magento module:enable Yireo_React
     ./bin/magento setup:upgrade
