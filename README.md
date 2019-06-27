@@ -4,10 +4,14 @@ The current Magento 2 frontend is based on Knockout, RequireJS and ES5 code. How
 ### Installation
 Use the following commands to install this module into Magento 2:
 
-    composer config repositories.yireo-react vcs git@github.com:yireo-training/Yireo_React.git
     composer require yireo/magento2-react:dev-master
-    
     bin/magento module:enable Yireo_React
+    bin/magento setup:upgrade
+
+This package itself installs the minified production versions of React and ReactDOM (which saves you more than 600 Kb). However, for development, it is nicer (because of reporting and the usage of browser extensions) to use the development versions of React which are shipped in a different module: 
+
+    composer require yireo/magento2-react-development:dev-master --dev
+    bin/magento module:enable Yireo_ReactDevelopment
     bin/magento setup:upgrade
 
 ### Usage
