@@ -20,3 +20,12 @@ Next, you can build React sources in various modules via Webpack:
 This module has no real functionality. It is only offering configuration files for other React modules.
 
 See the [Yireo_ReactMenu](https://github.com/yireo-training/Yireo_ReactMenu) module for a dummy component.
+
+### Issues
+#### Support for the experimental syntax 'dynamicImport' isn't currently enabled 
+If you bump into the error `Support for the experimental syntax 'dynamicImport' isn't currently enabled` you might want to try to add the following to your Webpack configuration:
+```js
+plugins: [
+    "@babel/plugin-syntax-dynamic-import"
+]
+```
