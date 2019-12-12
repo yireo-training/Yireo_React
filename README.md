@@ -16,6 +16,10 @@ Next, you can build React sources in various modules via Webpack:
 
     yarn dev
 
+Alternatively, you can also copy the 2 files to another folder and use the `MAGENTO_ROOT` variable:
+
+    MAGENTO_ROOT=/var/www/html yarn dev
+
 ### Usage
 This module has no real functionality. It is only offering configuration files for other React modules.
 
