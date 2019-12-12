@@ -1,24 +1,30 @@
 const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
+const magentoRoot = process.env.MAGENTO_ROOT || __dirname;
 
-let reactPaths = glob.sync("vendor/*/*/view/frontend/react_source", {});
-reactPaths.concat(glob.sync("app/code/*/*/view/frontend/react_source", {}));
+if (!fs.existsSync(magentoRoot + '/app/etc/config.php')) {
+    console.log('Invalid Magento root: ' + magentoRoot);
+    process.exit();
+}
+
+let reactPaths = glob.sync(magentoRoot + "/vendor/*/*/view/frontend/react_source", {});
+reactPaths.concat(glob.sync(magentoRoot + "/app/code/*/*/view/frontend/react_source", {}));
 reactPaths.push(path.resolve(__dirname, 'node_modules'));
 
-const outputFolder = path.resolve('pub');
-const generatedReactFile = path.resolve('var/tmp/react.js');
+const outputFolder = path.resolve(magentoRoot + '/pub');
+const generatedReactFile = path.resolve(magentoRoot + '/var/tmp/react.js');
 let generatedReact = `
 import React from "react";
 import ReactDOM from "react-dom";
 `;
 
-const reactImportFiles = glob.sync("vendor/*/*/view/frontend/react_source/_imports.js");
+const reactImportFiles = glob.sync(magentoRoot + "/vendor/*/*/view/frontend/react_source/_imports.js");
 reactImportFiles.forEach(reactImportFile => {
     generatedReact += "\n// File " + reactImportFile + "\n" + fs.readFileSync(reactImportFile);
 });
 
-const reactConfigurationFiles = glob.sync("vendor/*/*/view/frontend/react_source/_component.js");
+const reactConfigurationFiles = glob.sync(magentoRoot + "/vendor/*/*/view/frontend/react_source/_component.js");
 reactConfigurationFiles.forEach(reactConfigurationFile => {
     generatedReact += "\n// File " + reactConfigurationFile + "\n" + fs.readFileSync(reactConfigurationFile);
 });
