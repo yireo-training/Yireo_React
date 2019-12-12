@@ -8,25 +8,25 @@ if (!fs.existsSync(magentoRoot + '/app/etc/config.php')) {
     process.exit();
 }
 
-let reactPaths = glob.sync(magentoRoot + "/vendor/*/*/view/frontend/react_source", {});
-reactPaths.concat(glob.sync(magentoRoot + "/app/code/*/*/view/frontend/react_source", {}));
+let reactPaths = glob.sync(magentoRoot + '/vendor/*/*/view/frontend/react_source', {});
+reactPaths.concat(glob.sync(magentoRoot + '/app/code/*/*/view/frontend/react_source', {}));
 reactPaths.push(path.resolve(__dirname, 'node_modules'));
 
 const outputFolder = path.resolve(magentoRoot + '/pub');
 const generatedReactFile = path.resolve(magentoRoot + '/var/tmp/react.js');
 let generatedReact = `
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 `;
 
-const reactImportFiles = glob.sync(magentoRoot + "/vendor/*/*/view/frontend/react_source/_imports.js");
+const reactImportFiles = glob.sync(magentoRoot + '/vendor/*/*/view/frontend/react_source/_imports.js');
 reactImportFiles.forEach(reactImportFile => {
-    generatedReact += "\n// File " + reactImportFile + "\n" + fs.readFileSync(reactImportFile);
+    generatedReact += '\n// File ' + reactImportFile + '\n' + fs.readFileSync(reactImportFile);
 });
 
-const reactConfigurationFiles = glob.sync(magentoRoot + "/vendor/*/*/view/frontend/react_source/_component.js");
+const reactConfigurationFiles = glob.sync(magentoRoot + '/vendor/*/*/view/frontend/react_source/_component.js');
 reactConfigurationFiles.forEach(reactConfigurationFile => {
-    generatedReact += "\n// File " + reactConfigurationFile + "\n" + fs.readFileSync(reactConfigurationFile);
+    generatedReact += '\n// File ' + reactConfigurationFile + '\n' + fs.readFileSync(reactConfigurationFile);
 });
 
 fs.writeFileSync(generatedReactFile, generatedReact);
@@ -43,9 +43,10 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
+                    loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/react']
+                        presets: ['@babel/react'],
+                        plugins: ['@babel/plugin-syntax-dynamic-import']
                     }
                 }
             }
