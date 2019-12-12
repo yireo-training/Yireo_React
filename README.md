@@ -25,3 +25,14 @@ This module has no real functionality. It is only offering configuration files f
 
 See the [Yireo_ReactMenu](https://github.com/yireo-training/Yireo_ReactMenu) module for a dummy component.
 
+The goal is to either create a module with a `view/frontend/react_source` folder or a theme with a `react_source` folder and
+have this Webpack configuration pick up on those files to create a single bundle. Dynamic bundles (with an `import()` function
+call) are also supported.
+
+The theme is identified with a global variable:
+
+    MAGENTO_THEME=Magento/luma yarn dev
+
+### Experimental
+This module is experimental and only meant for developers that are happy to invest time into it. It doesn't mean that it is
+costing a lot of effort, it simply means that the project requires knowledge on React essentials.
