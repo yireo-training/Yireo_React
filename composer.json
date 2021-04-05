@@ -1,7 +1,7 @@
 {
     "name": "yireo/magento2-react",
     "type": "magento2-module",
-    "version": "16.9.0",
+    "version": "16.9.1",
     "license": "OSL-3.0",
     "description": "Module to add React to Magento 2 KO frontend",
     "keywords": [
